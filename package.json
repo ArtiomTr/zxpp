@@ -2,8 +2,7 @@
   "name": "zxpp",
   "version": "0.0.0",
   "description": "",
-  "main": "./dist/index.js",
-  "module": "./dist/zxpp.esm.js",
+  "main": "./dist/zxpp.js",
   "files": [
     "dist"
   ],
@@ -18,9 +17,10 @@
     }
   ],
   "scripts": {
+    "exec": "node ./dist/zxpp.js",
     "build": "aqu build",
     "start": "aqu watch",
-    "lint": "aqu lint",
+    "lint": "eslint .",
     "lint:fix": "aqu lint --fix",
     "test": "aqu test --passWithNoTests",
     "test:watch": "aqu test --passWithNoTests --watch",
@@ -56,5 +56,8 @@
     "size-limit": "^5.0.2",
     "typescript": "^4.3.5"
   },
-  "types": "./dist/zxpp.d.ts"
+  "types": "./dist/zxpp.d.ts",
+  "dependencies": {
+    "zx": "^2.0.0"
+  }
 }
