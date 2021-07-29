@@ -40,9 +40,10 @@
     },
     "devDependencies": {
         "@esbuild-plugins/node-resolve": "^0.0.14",
+        "@types/is-url": "^1.2.30",
         "@types/node": "^16.4.6",
-        "aqu": "0.1.1",
-        "esbuild": "^0.8.57",
+        "aqu": "^0.2.1",
+        "esbuild": "^0.12.17",
         "lint-staged": "^11.1.1",
         "np": "^7.5.0",
         "size-limit": "^5.0.2",
@@ -50,6 +51,7 @@
     },
     "types": "./dist/zxpp.d.ts",
     "dependencies": {
+        "is-url": "^1.2.4",
         "zx": "^2.0.0"
     }
 }

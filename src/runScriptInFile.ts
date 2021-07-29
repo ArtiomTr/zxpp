@@ -9,29 +9,31 @@ import { fs } from 'zx';
 const NodeResolve = (NodeResolveRaw as unknown as { default: typeof NodeResolveRaw }).default;
 
 export const runScriptInFile = async (path: string) => {
-    const { name: targetFilename, dir: targetDirectory } = parse(path);
+    const { name: targetFilename, dir: targetDirectory, ext } = parse(path);
     const resultFilename = resolve(targetDirectory, `${targetFilename}.mjs`);
 
-    await esbuild.build({
-        entryPoints: [path],
-        bundle: true,
-        outfile: resultFilename,
-        platform: 'node',
-        format: 'esm',
-        plugins: [
-            NodeResolve({
-                extensions: ['.ts', '.js'],
-                onResolved: (resolved) => {
-                    if (resolved.includes('node_modules')) {
-                        return {
-                            external: true,
-                        };
-                    }
-                    return resolved;
-                },
-            }),
-        ],
-    });
+    if (ext !== '.mjs') {
+        await esbuild.build({
+            entryPoints: [path],
+            bundle: true,
+            outfile: resultFilename,
+            platform: 'node',
+            format: 'esm',
+            plugins: [
+                NodeResolve({
+                    extensions: ['.ts', '.js'],
+                    onResolved: (resolved) => {
+                        if (resolved.includes('node_modules')) {
+                            return {
+                                external: true,
+                            };
+                        }
+                        return resolved;
+                    },
+                }),
+            ],
+        });
+    }
 
     const savedContext = {
         __dirname: global.__dirname ?? undefined,
