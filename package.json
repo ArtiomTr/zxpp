@@ -1,63 +1,55 @@
 {
-  "name": "zxpp",
-  "version": "0.0.0",
-  "description": "",
-  "main": "./dist/zxpp.js",
-  "files": [
-    "dist"
-  ],
-  "size-limit": [
-    {
-      "path": "dist/zxpp.cjs.production.min.js",
-      "limit": "10 KB"
+    "name": "zxpp",
+    "version": "0.0.0",
+    "description": "🦐 Extended zx",
+    "main": "./dist/zxpp.js",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "exec": "node ./dist/zxpp.mjs",
+        "build": "aqu build",
+        "start": "aqu watch",
+        "lint": "eslint .",
+        "lint:fix": "aqu lint --fix",
+        "test": "aqu test --passWithNoTests",
+        "test:watch": "aqu test --passWithNoTests --watch",
+        "test:coverage": "aqu test --silent --ci --coverage --coverageReporters=\"text\" --coverageReporters=\"text-summary\"",
+        "prepare": "aqu build",
+        "release": "np",
+        "size": "size-limit",
+        "size:why": "size-limit --why"
     },
-    {
-      "path": "dist/zxpp.esm.js",
-      "limit": "10 KB"
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "**/*.{js,jsx,ts,tsx,json}": "npm run lint:fix"
+    },
+    "author": "Artiom Tretjakovas",
+    "license": "MIT",
+    "homepage": "https://github.com/ArtiomTr/zxpp#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ArtiomTr/zxpp.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ArtiomTr/zxpp/issues"
+    },
+    "devDependencies": {
+        "@esbuild-plugins/node-resolve": "^0.0.14",
+        "@types/node": "^16.4.6",
+        "aqu": "0.1.1",
+        "esbuild": "^0.8.57",
+        "lint-staged": "^11.1.1",
+        "np": "^7.5.0",
+        "size-limit": "^5.0.2",
+        "typescript": "^4.3.5"
+    },
+    "types": "./dist/zxpp.d.ts",
+    "dependencies": {
+        "zx": "^2.0.0"
     }
-  ],
-  "scripts": {
-    "exec": "node ./dist/zxpp.js",
-    "build": "aqu build",
-    "start": "aqu watch",
-    "lint": "eslint .",
-    "lint:fix": "aqu lint --fix",
-    "test": "aqu test --passWithNoTests",
-    "test:watch": "aqu test --passWithNoTests --watch",
-    "test:coverage": "aqu test --silent --ci --coverage --coverageReporters=\"text\" --coverageReporters=\"text-summary\"",
-    "prepare": "aqu build",
-    "release": "np",
-    "size": "size-limit",
-    "size:why": "size-limit --why"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,json}": "npm run lint:fix"
-  },
-  "author": "Artiom Tretjakovas",
-  "license": "MIT",
-  "homepage": "https://github.com/ArtiomTr/zxpp#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ArtiomTr/zxpp.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ArtiomTr/zxpp/issues"
-  },
-  "devDependencies": {
-    "@types/node": "^16.4.6",
-    "aqu": "0.1.1",
-    "lint-staged": "^11.1.1",
-    "np": "^7.5.0",
-    "size-limit": "^5.0.2",
-    "typescript": "^4.3.5"
-  },
-  "types": "./dist/zxpp.d.ts",
-  "dependencies": {
-    "zx": "^2.0.0"
-  }
 }

@@ -1,5 +1,7 @@
 {
-    "format": "cjs",
-    "cjsMode": "development",
-    "outfile": "dist/zxpp.js"
+    "format": "esm",
+    "outfile": "dist/zxpp.mjs",
+    "buildOptions": {
+        "platform": "node"
+    }
 }
