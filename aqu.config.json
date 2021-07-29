@@ -1,0 +1,5 @@
+{
+    "format": "cjs",
+    "cjsMode": "development",
+    "outfile": "dist/zxpp.js"
+}
