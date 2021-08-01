@@ -63,7 +63,6 @@ export const runScriptInFile = async (path: string) => {
         console.error(err);
     } finally {
         Object.assign(global, savedContext);
+        await fs.rm(resultFilename);
     }
-
-    await fs.rm(resultFilename);
 };
