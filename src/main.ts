@@ -15,16 +15,13 @@ export const main = async () => {
         printHelp();
     }
 
-    if (argv._.length > 1) {
-        console.log('Cannot execute multiple scripts at once');
-        process.exit(1);
-    }
-
     const script = argv._[0];
 
     if (isUrl(script)) {
         runScriptFromUrl(script);
     } else if (script !== undefined) {
         runScriptInFile(script);
+    } else {
+        throw new Error('Invalid usage. Specify --help flag to see correct usage');
     }
 };
