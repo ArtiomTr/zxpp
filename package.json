@@ -2,7 +2,7 @@
     "name": "zxpp",
     "version": "0.1.0",
     "description": "🦐 Extended zx",
-    "main": "./dist/zxpp.js",
+    "main": "./dist/zxpp.mjs",
     "files": [
         "dist"
     ],
@@ -11,7 +11,9 @@
         "script",
         "zx"
     ],
-    "bin": "./dist/zxpp.js",
+    "bin": {
+        "zxpp": "./dist/zxpp.mjs"
+    },
     "scripts": {
         "exec": "node ./dist/zxpp.mjs",
         "build": "aqu build",
@@ -51,6 +53,6 @@
         "zx": "^2.0.0"
     },
     "engines": {
-        "node": ">= 14.8.0"
+        "node": ">=14.8.0"
     }
 }
