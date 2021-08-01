@@ -16,7 +16,7 @@
         "test": "aqu test --passWithNoTests",
         "test:watch": "aqu test --passWithNoTests --watch",
         "test:coverage": "aqu test --silent --ci --coverage --coverageReporters=\"text\" --coverageReporters=\"text-summary\"",
-        "prepare": "aqu build",
+        "prepareOnly": "aqu build",
         "release": "np",
         "size": "size-limit",
         "size:why": "size-limit --why"
@@ -33,6 +33,7 @@
     },
     "devDependencies": {
         "@esbuild-plugins/node-resolve": "^0.0.14",
+        "@types/is-url": "^1.2.30",
         "@types/node": "^16.4.6",
         "aqu": "^0.2.1",
         "np": "^7.5.0",

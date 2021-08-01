@@ -1,7 +1,9 @@
+import isUrl from 'is-url';
 import { argv } from 'zx';
 
 import { printHelp } from './printHelp';
 import { printVersion } from './printVersion';
+import { runScriptFromUrl } from './runScriptFromUrl';
 import { runScriptInFile } from './runScriptInFile';
 
 export const main = async () => {
@@ -20,7 +22,9 @@ export const main = async () => {
 
     const script = argv._[0];
 
-    if (script !== undefined) {
+    if (isUrl(script)) {
+        runScriptFromUrl(script);
+    } else if (script !== undefined) {
         runScriptInFile(script);
     }
 };
