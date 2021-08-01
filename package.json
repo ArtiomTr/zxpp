@@ -12,7 +12,7 @@
         "zx"
     ],
     "bin": {
-        "zxpp": "./dist/zxpp.mjs"
+        "zxpp": "dist/zxpp.mjs"
     },
     "scripts": {
         "exec": "node ./dist/zxpp.mjs",

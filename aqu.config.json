@@ -2,6 +2,9 @@
     "format": "esm",
     "outfile": "dist/zxpp.mjs",
     "buildOptions": {
-        "platform": "node"
+        "platform": "node",
+        "banner": {
+            "js": "#!/usr/bin/env node\n"
+        }
     }
 }
