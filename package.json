@@ -1,6 +1,6 @@
 {
     "name": "zxpp",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "🦐 Extended zx",
     "main": "./dist/zxpp.mjs",
     "files": [
