@@ -1,5 +1,5 @@
 import { createRequire } from 'module';
-import { dirname, parse, resolve } from 'path';
+import { dirname, parse, resolve, sep } from 'path';
 import { pathToFileURL } from 'url';
 
 import NodeResolveRaw from '@esbuild-plugins/node-resolve';
@@ -13,6 +13,14 @@ export const runScriptInFile = async (path: string) => {
     const resultFilename = resolve(targetDirectory, `${targetFilename}.mjs`);
 
     if (ext !== '.mjs') {
+        path = resolve(path);
+
+        const nodeModulesFolder = 'node_modules';
+
+        const mainFolder = path.includes(nodeModulesFolder)
+            ? path.substring(0, path.indexOf(sep, path.indexOf(nodeModulesFolder) + nodeModulesFolder.length + 1))
+            : undefined;
+
         await esbuild.build({
             entryPoints: [path],
             bundle: true,
@@ -23,7 +31,7 @@ export const runScriptInFile = async (path: string) => {
                 NodeResolve({
                     extensions: ['.ts', '.js'],
                     onResolved: (resolved) => {
-                        if (resolved.includes('node_modules')) {
+                        if (resolved.includes('node_modules') && (!mainFolder || !resolved.includes(mainFolder))) {
                             return {
                                 external: true,
                             };

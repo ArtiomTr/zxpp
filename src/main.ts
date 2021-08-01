@@ -7,12 +7,16 @@ import { runScriptFromUrl } from './runScriptFromUrl';
 import { runScriptInFile } from './runScriptInFile';
 
 export const main = async () => {
-    if (argv.version || argv.V) {
-        printVersion();
-    }
+    const firstArgument = process.argv[2];
 
-    if (argv.help || argv.h) {
-        printHelp();
+    if (firstArgument === undefined || firstArgument[0] === '-') {
+        if (argv.version || argv.V) {
+            printVersion();
+        }
+
+        if (argv.help || argv.h) {
+            printHelp();
+        }
     }
 
     const script = argv._[0];
