@@ -23,7 +23,7 @@
         "test": "aqu test --passWithNoTests",
         "test:watch": "aqu test --passWithNoTests --watch",
         "test:coverage": "aqu test --silent --ci --coverage --coverageReporters=\"text\" --coverageReporters=\"text-summary\"",
-        "prepareOnly": "aqu build",
+        "prepare": "aqu build",
         "release": "np",
         "size": "size-limit",
         "size:why": "size-limit --why"
