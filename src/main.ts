@@ -7,9 +7,7 @@ import { runScriptFromUrl } from './runScriptFromUrl';
 import { runScriptInFile } from './runScriptInFile';
 
 export const main = async () => {
-    if (argv.debug || process.env.ZXPP_DEBUG === 'true') {
-        console.log('Running zxpp with arguments:', argv, process.argv);
-    }
+    console.log('Running zxpp with arguments:', argv, process.argv);
     const firstArgument = process.argv[2];
 
     if (firstArgument === undefined || firstArgument[0] === '-') {
