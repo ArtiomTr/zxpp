@@ -1,5 +1,6 @@
+import { readFile } from 'fs/promises';
 import { createRequire } from 'module';
-import { dirname, parse, resolve, sep } from 'path';
+import { dirname, extname, parse, resolve, sep } from 'path';
 import { pathToFileURL } from 'url';
 
 import NodeResolveRaw from '@esbuild-plugins/node-resolve';
@@ -7,6 +8,14 @@ import esbuild from 'esbuild';
 import { fs } from 'zx';
 
 const NodeResolve = (NodeResolveRaw as unknown as { default: typeof NodeResolveRaw }).default;
+
+const extensionToLoader: Record<string, esbuild.Loader> = {
+    '.js': 'js',
+    '.cjs': 'js',
+    '.jsx': 'jsx',
+    '.ts': 'ts',
+    '.tsx': 'tsx',
+};
 
 export const runScriptInFile = async (path: string) => {
     const { name: targetFilename, dir: targetDirectory, ext } = parse(path);
@@ -22,9 +31,14 @@ export const runScriptInFile = async (path: string) => {
             : undefined;
 
         await esbuild.build({
-            entryPoints: [path],
             bundle: true,
             outfile: resultFilename,
+            stdin: {
+                contents: (await readFile(path)).toString(),
+                loader: extensionToLoader[extname(path)] ?? 'ts',
+                resolveDir: dirname(path),
+                sourcefile: path,
+            },
             platform: 'node',
             format: 'esm',
             plugins: [
