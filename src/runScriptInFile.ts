@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises';
+import { readFile, realpath } from 'fs/promises';
 import { createRequire } from 'module';
 import { dirname, extname, parse, resolve, sep } from 'path';
 import { pathToFileURL } from 'url';
@@ -22,7 +22,7 @@ export const runScriptInFile = async (path: string) => {
     const resultFilename = resolve(targetDirectory, `${targetFilename}.mjs`);
 
     if (ext !== '.mjs') {
-        path = resolve(path);
+        path = await realpath(resolve(path));
 
         const nodeModulesFolder = 'node_modules';
 
