@@ -1,5 +1,7 @@
 #!/usr/bin/env zxpp
 
+/// <reference types="zx" />
+
 // Original script https://github.com/google/zx/blob/main/examples/backup-github.mjs.
 // This file is not an exact copy of the original script, it is a modified version.
 // The original version of the script is under this license:
