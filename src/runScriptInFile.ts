@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import { readFile, realpath } from 'fs/promises';
 import { createRequire } from 'module';
 import { dirname, extname, parse, resolve, sep } from 'path';
@@ -17,9 +18,13 @@ const extensionToLoader: Record<string, esbuild.Loader> = {
     '.tsx': 'tsx',
 };
 
+const generateRandomPrefix = () => {
+    return crypto.randomBytes(12).toString('hex');
+};
+
 export const runScriptInFile = async (path: string) => {
     const { name: targetFilename, dir: targetDirectory, ext } = parse(path);
-    const resultFilename = resolve(targetDirectory, `${targetFilename}.mjs`);
+    const resultFilename = resolve(targetDirectory, `${generateRandomPrefix()}.${targetFilename}.mjs`);
 
     if (ext !== '.mjs') {
         path = await realpath(resolve(path));
